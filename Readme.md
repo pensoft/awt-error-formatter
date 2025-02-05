@@ -12,9 +12,6 @@ A PHP class for formatting error payloads in applications. This package provides
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -41,7 +38,7 @@ composer require pensoft/awt-error-formatter
 Include in your PHP class/file
 
 ```php
-use Pensoft\ErrorPayloadFormatter\ErrorPayloadFormatter;
+use Pensoft\AwtErrorFormatter\ErrorPayloadFormatter;
 ```
 
 Formatting error

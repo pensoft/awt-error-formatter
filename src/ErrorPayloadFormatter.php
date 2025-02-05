@@ -1,6 +1,6 @@
 <?php
 
-namespace Pensoft\ErrorPayloadFormatter;
+namespace Pensoft\AwtErrorFormatter;
 
 use Illuminate\Http\Request;
 use Throwable;
