@@ -1,0 +1,23 @@
+{
+  "name": "pensoft/awt-error-formatter",
+  "description": "A PHP class for formatting error payloads.",
+  "keywords": [],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Seyhan Demirov",
+      "email": "s.demirov@pensoft.net"
+    }
+  ],
+  "require": {
+    "php": "^8.0"
+  },
+  "type": "library",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Pensoft\\ErrorPayloadFormatter\\": "src/"
+    }
+  }
+}
