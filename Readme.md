@@ -41,7 +41,7 @@ Include in your PHP class/file
 use Pensoft\AwtErrorFormatter\ErrorPayloadFormatter;
 ```
 
-Formatting error
+Formatting the error
 ```php
 // Format the error payload
 $errorPayload = ErrorPayloadFormatter::format(
@@ -51,4 +51,28 @@ $errorPayload = ErrorPayloadFormatter::format(
     'serviceId'
 );
 //send $errorPayload to third-party library or service
+```
+Response format
+```php
+[
+    'service_name'  => $serviceName,
+    'service_id'    => $serviceId ?? 'no-service-id',  // or cast to string/number as needed
+    'message'       => $throwable->getMessage(),       // string error message
+    'user_id'       => $userId,                        // e.g., UUID or null
+    'timestamp'     => now()->timestamp,               // integer Unix timestamp
+    'service_type'  => $serviceType,                   // e.g., 'backend' or 'frontend'
+
+    // "details" section with request info & error code
+    'details' => [
+        'error_type'    => $errorType,                      // e.g., 'HTTP' or 'CRONJOB'
+        'uri'           => $request->fullUrl(),             // e.g. "https://example.com/path"
+        'method'        => $request->method(),              // e.g. "GET", "POST", etc.
+        'user_agent'    => $request->header('User-Agent') ?? 'unknown',
+        'payload'       => $request->all(),                 // entire request input as an array
+        'error_code'    => $throwable->getCode(),           // numeric or 0 if none
+        'stack_trace'   => $throwable->getTrace(),          // array full stack trace
+        'file_name'     => $throwable->getFile(),           // file path
+        'line_number'   => $throwable->getLine(),           // integer line number
+    ],
+]
 ```
