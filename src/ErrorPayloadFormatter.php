@@ -24,7 +24,12 @@ class ErrorPayloadFormatter
     ): array {
         // Retrieve user ID if available (otherwise use a placeholder or null).
         // Adjust this logic to match your authentication setup.
-        $userId = $request->user()?->id ?? null;
+        try {
+            // Attempt to retrieve the authenticated user
+            $userId = $request->user()?->id;
+        } catch (\Exception $e) {
+            $userId = null;
+        }
 
         // Example: Hardcode or determine "HTTP" vs "CRONJOB" based on context
         $errorType = 'HTTP';  // or 'CRONJOB'
