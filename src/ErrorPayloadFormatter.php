@@ -48,12 +48,12 @@ class ErrorPayloadFormatter
                 'error_type'    => $errorType,                      // e.g., 'HTTP' or 'CRONJOB'
                 'uri'           => $request->fullUrl(),             // e.g. "https://example.com/path"
                 'method'        => $request->method(),              // e.g. "GET", "POST", etc.
-                'user_agent'    => $request->header('User-Agent') ?? 'unknown',
                 'payload'       => $request->all(),                 // entire request input as an array
-                'error_code'    => $throwable->getCode(),           // numeric or 0 if none
-                'stack_trace'   => $throwable->getTrace(),          // array full stack trace
                 'file_name'     => $throwable->getFile(),           // file path
                 'line_number'   => $throwable->getLine(),           // integer line number
+                'error_code'    => $throwable->getCode(),           // numeric or 0 if none
+                'user_agent'    => $request->header('User-Agent') ?? 'unknown',
+                'stack_trace'   => $throwable->getTraceAsString(),   // string full stack trace
             ],
         ];
     }
