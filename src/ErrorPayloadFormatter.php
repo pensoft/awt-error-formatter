@@ -51,9 +51,10 @@ class ErrorPayloadFormatter
                 'payload'       => $request->all(),                 // entire request input as an array
                 'file_name'     => $throwable->getFile(),           // file path
                 'line_number'   => $throwable->getLine(),           // integer line number
-                'error_code'    => $throwable->getCode(),           // numeric or 0 if none
+                'error_code'    => is_numeric($throwable->getCode()) ? (int) $throwable->getCode() : 0,           // numeric or 0 if none
+                'error_code_raw' => (string) $throwable->getCode(), // string raw value for code
                 'user_agent'    => $request->header('User-Agent') ?? 'unknown',
-                'stack_trace'   => $throwable->getTraceAsString(),   // string full stack trace
+                'stack_trace'   => $throwable->getTraceAsString(),  // string full stack trace
             ],
         ];
     }
